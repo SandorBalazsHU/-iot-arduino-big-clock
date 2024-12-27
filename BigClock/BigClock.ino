@@ -300,6 +300,52 @@ void displayTime(uint8_t buffer[], int hour, int minute, int second) {
   updateShiftRegisters(buffer, 6);
 }
 
+void animation01(uint8_t buffer[], int size, int charCount){
+    for(int digit=0; digit<size; digit++){
+      clearDisplay(buffer, size);
+      bitWrite(buffer[digit],6,1);
+      updateShiftRegisters(buffer, size);
+      delay(100);
+    }
+    for(int digit=size-1; digit>=0; digit--){
+      clearDisplay(buffer, size);
+      bitWrite(buffer[digit],6,1);
+      updateShiftRegisters(buffer, size);
+      delay(100);
+    }
+}
+
+void animation02(uint8_t buffer[], int size, int charCount){
+    for(int digit=0; digit<size; digit++){
+      clearDisplay(buffer, size);
+      bitWrite(buffer[digit],0,1);
+      updateShiftRegisters(buffer, size);
+      delay(100);
+    }
+    clearDisplay(buffer, size);
+    bitWrite(buffer[5],5,1);
+    updateShiftRegisters(buffer, size);
+    delay(100);
+    clearDisplay(buffer, size);
+    bitWrite(buffer[5],4,1);
+    updateShiftRegisters(buffer, size);
+    delay(100);
+    for(int digit=size-1; digit>=0; digit--){
+      clearDisplay(buffer, size);
+      bitWrite(buffer[digit],3,1);
+      updateShiftRegisters(buffer, size);
+      delay(100);
+    }
+    clearDisplay(buffer, size);
+    bitWrite(buffer[0],2,1);
+    updateShiftRegisters(buffer, size);
+    delay(100);
+    clearDisplay(buffer, size);
+    bitWrite(buffer[0],1,1);
+    updateShiftRegisters(buffer, size);
+    delay(100);
+}
+
 void segmentTest(uint8_t buffer[], int size, int charCount){
   for(int i=0; i<8; i++){
     for(int digit=0; digit<size; digit++){
@@ -363,7 +409,10 @@ void loop() {
   /*delay(1000);
   dispTest(displayBuffer, DISP_SIZE, CHAR_COUNT);*/
 
-  segmentTest(displayBuffer, DISP_SIZE, CHAR_COUNT);
+  //segmentTest(displayBuffer, DISP_SIZE, CHAR_COUNT);
+
+  //animation01(displayBuffer, DISP_SIZE, CHAR_COUNT);
+  animation02(displayBuffer, DISP_SIZE, CHAR_COUNT);
   //delay(2000);
   //displayInteger(displayBuffer, num++, true);
   /*displayDate(displayBuffer,2024,12,26);
