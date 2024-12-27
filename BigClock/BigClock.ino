@@ -95,7 +95,7 @@ void dispTest(uint8_t buffer[], int size, int charCount){
       buffer[digit] = CHAR_MAP[c];
     }
     updateShiftRegisters(buffer, size);
-    delay(500);
+    delay(1000);
   }
 }
 
@@ -109,12 +109,12 @@ void setup() {
     displayBuffer[i] = 0;
   }
   updateShiftRegisters(displayBuffer, DISP_COUNT);
-
+  delay(1000);
   dispTest(displayBuffer, DISP_COUNT, CHAR_COUNT);
 }
 
 void loop() {
-
+/*
   // Example usage: Display "A.1" on the first three digits
   setDisplayCharacter(displayBuffer, 0, '0');
   setDisplayCharacter(displayBuffer, 1, '0');
@@ -131,4 +131,7 @@ void loop() {
   setDisplayDot(displayBuffer, 1, false);
   updateShiftRegisters(displayBuffer, DISP_COUNT);
   delay(1000); // Delay for visibility
+  */
+  delay(1000);
+  dispTest(displayBuffer, DISP_COUNT, CHAR_COUNT);
 }
